@@ -3,5 +3,21 @@
 version = 4
 
 [[package]]
+name = "concat_const"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "60c92cd5ec953d0542f48d2a90a25aa2828ab1c03217c1ca077000f3af15997d"
+
+[[package]]
 name = "file_server"
 version = "0.1.0"
+dependencies = [
+ "concat_const",
+ "web_server",
+]
+
+[[package]]
+name = "web_server"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "720326ab28ca0ce35d30275de9d8a4b084399247a54d426844a040ae2ab66682"
