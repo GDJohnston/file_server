@@ -32,7 +32,7 @@ pub(crate) fn generate_files_webpage_new() {
     if fs::exists(WEBPAGE_FILES).unwrap() {
         fs::remove_file(WEBPAGE_FILES).unwrap();
     }
-    
+
     let mut files_webpage = OpenOptions::new()
         .create(true)
         .write(true)
@@ -43,7 +43,7 @@ pub(crate) fn generate_files_webpage_new() {
     let filenames = fs::read_dir(SERVICE_ROOT).unwrap();
     filenames.for_each(|file| {
         let filename = file.unwrap().file_name();
-        writeln!(files_webpage, "{:?}", filename).unwrap();
+        writeln!(files_webpage, "           <li>{}</li>", filename.display()).unwrap();
     });
     files_webpage.write_all(FILES_WEBPAGE_CONTENT_2).unwrap();
 }
