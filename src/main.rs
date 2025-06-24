@@ -1,8 +1,4 @@
-use std::{
-    fs::{self, OpenOptions},
-    io::Write as _,
-    path::Path,
-};
+use std::path::Path;
 
 mod files_webpage;
 
@@ -16,7 +12,7 @@ const SERVICE_ROOT: &'static str = "service_files/";
 const WEBPAGE_INDEX: &str = concat_const::concat!(WEBPAGE_ROOT, "hello.html");
 const WEBPAGE_FILES: &str = concat_const::concat!(WEBPAGE_ROOT, "files.html");
 
-const WEBPAGE_E404:  &str = concat_const::concat!(WEBPAGE_ROOT, "404.html");
+const WEBPAGE_E404: &str = concat_const::concat!(WEBPAGE_ROOT, "404.html");
 
 fn main() {
     let id_handler = Box::new(|request: web_server::Request, _response| {
@@ -29,6 +25,6 @@ fn main() {
         .get("/", Box::new(|_, _| Path::new(WEBPAGE_INDEX).into()))
         .get("/files", Box::new(|_, _| Path::new(WEBPAGE_FILES).into()))
         .get("/file/:id", id_handler)
-        .not_found(Box::new(|_,_| Path::new(WEBPAGE_E404).into()))
+        .not_found(Box::new(|_, _| Path::new(WEBPAGE_E404).into()))
         .launch(PORT);
 }

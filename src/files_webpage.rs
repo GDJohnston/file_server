@@ -1,11 +1,14 @@
-use std::{fs::{self, OpenOptions}, io::Write as _};
+use std::{
+    fs::{self, OpenOptions},
+    io::Write as _,
+};
 
-const WEBPAGE_ROOT: &'static str = "webpages/";
-const SERVICE_ROOT: &'static str = "service_files/";
+const WEBPAGE_ROOT: &str = "webpages/";
+const SERVICE_ROOT: &str = "service_files/";
 
 const WEBPAGE_FILES: &str = concat_const::concat!(WEBPAGE_ROOT, "files.html");
 
-const FILES_WEBPAGE_CONTENT: &[u8; 469] = b"<!DOCTYPE html>
+const FILES_WEBPAGE_CONTENT_1: &[u8; 343] = b"<!DOCTYPE html>
 <html lang=\"en\">
     <head>
         <meta charset=\"utf-8\">
@@ -18,24 +21,29 @@ const FILES_WEBPAGE_CONTENT: &[u8; 469] = b"<!DOCTYPE html>
             The file extension must be included.
         </p>
         <ul>
-            <li>hello.html</li>
-            <li>video.mp4</li>
-            <li>404.html</li>
+";
+
+const FILES_WEBPAGE_CONTENT_2: &[u8; 34] = b"
         </ul>
     </body>
 </html>";
 
 pub(crate) fn generate_files_webpage_new() {
+    if fs::exists(WEBPAGE_FILES).unwrap() {
+        fs::remove_file(WEBPAGE_FILES).unwrap();
+    }
+    
     let mut files_webpage = OpenOptions::new()
         .create(true)
         .write(true)
         .open(WEBPAGE_FILES)
         .unwrap();
-    
-    files_webpage.write_all(FILES_WEBPAGE_CONTENT).unwrap();
+
+    files_webpage.write_all(FILES_WEBPAGE_CONTENT_1).unwrap();
     let filenames = fs::read_dir(SERVICE_ROOT).unwrap();
     filenames.for_each(|file| {
         let filename = file.unwrap().file_name();
         writeln!(files_webpage, "{:?}", filename).unwrap();
     });
+    files_webpage.write_all(FILES_WEBPAGE_CONTENT_2).unwrap();
 }
