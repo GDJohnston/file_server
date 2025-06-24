@@ -9,7 +9,7 @@ const PORT: i32 = 8080;
 const WEBPAGE_ROOT: &'static str = "webpages/";
 const SERVICE_ROOT: &'static str = "service_files/";
 
-const WEBPAGE_INDEX: &str = concat_const::concat!(WEBPAGE_ROOT, "hello.html");
+const WEBPAGE_INDEX: &str = concat_const::concat!(WEBPAGE_ROOT, "index.html");
 const WEBPAGE_FILES: &str = concat_const::concat!(WEBPAGE_ROOT, "files.html");
 
 const WEBPAGE_E404: &str = concat_const::concat!(WEBPAGE_ROOT, "404.html");

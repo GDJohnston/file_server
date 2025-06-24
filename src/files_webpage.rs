@@ -29,10 +29,6 @@ const FILES_WEBPAGE_CONTENT_2: &[u8; 34] = b"
 </html>";
 
 pub(crate) fn generate_files_webpage_new() {
-    if fs::exists(WEBPAGE_FILES).unwrap() {
-        fs::remove_file(WEBPAGE_FILES).unwrap();
-    }
-
     let mut files_webpage = OpenOptions::new()
         .create(true)
         .write(true)
