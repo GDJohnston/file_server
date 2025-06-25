@@ -21,8 +21,8 @@ pub fn launch_server(service_folder: &'static str, port: i32) {
     setup(service_folder);
 
     let id_handler = Box::new(|request: web_server::Request, _| {
-        let foo = service_folder.to_owned() + request.params.values().into_iter().next().unwrap();
-        let mut response: web_server::Response = Path::new(foo.as_str()).into();
+        let filepath = service_folder.to_owned() + request.params.values().into_iter().next().unwrap();
+        let mut response: web_server::Response = Path::new(filepath.as_str()).into();
         // Imply generic downloadable content, avoids playing mp4s
         response.set_header("content-type", "application/octet-stream");
         response

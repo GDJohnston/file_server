@@ -24,7 +24,7 @@ const FILES_WEBPAGE_CONTENT_2: &[u8; 34] = b"
 </html>";
 
 
-/// Creates a simple html webpage listing all the files in the `service_folder``.
+/// Creates a simple html webpage listing all the files in the `service_folder`.
 /// The file is writen to `files_webpage`, the file is overwritten if it already exists. 
 ///
 /// # Panics
