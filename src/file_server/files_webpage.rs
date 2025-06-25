@@ -23,7 +23,15 @@ const FILES_WEBPAGE_CONTENT_2: &[u8; 34] = b"
     </body>
 </html>";
 
-pub(crate) fn generate_files_webpage(files_webpage:&str, service_root: &str) {
+
+/// Creates a simple html webpage listing all the files in the `service_folder``.
+/// The file is writen to `files_webpage`, the file is overwritten if it already exists. 
+///
+/// # Panics
+///
+/// Panics if `files_webpage` could not be opened or created or if the file could not be
+/// written to at any stage.
+pub(crate) fn generate_files_webpage(files_webpage: &str, service_folder: &str) {
     let mut files_webpage = OpenOptions::new()
         .create(true)
         .write(true)
@@ -32,7 +40,7 @@ pub(crate) fn generate_files_webpage(files_webpage:&str, service_root: &str) {
         .unwrap();
 
     files_webpage.write_all(FILES_WEBPAGE_CONTENT_1).unwrap();
-    let filenames = fs::read_dir(service_root).unwrap();
+    let filenames = fs::read_dir(service_folder).unwrap();
     filenames.for_each(|file| {
         let filename = file.unwrap().file_name();
         writeln!(files_webpage, "           <li>{}</li>", filename.display()).unwrap();
