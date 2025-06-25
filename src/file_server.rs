@@ -5,7 +5,7 @@ mod files_webpage;
 extern crate web_server;
 
 const WEBPAGE_ROOT: &str = "webpages/";
-const EXAMPLE_SERVICE_ROOT: &str = "example_service_files/";
+const EXAMPLE_SERVICE_ROOT: &str = "src/file_server/example_service_files/";
 
 const WEBPAGE_INDEX: &str = concat_const::concat!(WEBPAGE_ROOT, "index.html");
 const WEBPAGE_FILES: &str = concat_const::concat!(WEBPAGE_ROOT, "files.html");
