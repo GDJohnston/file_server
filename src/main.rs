@@ -1,7 +1,4 @@
 mod file_server;
-mod files_webpage;
-
-extern crate web_server;
 
 const PORT: i32 = 8080;
 

@@ -1,7 +1,8 @@
 use std::{fs, path::Path};
 
-use crate::files_webpage;
+mod files_webpage;
 
+extern crate web_server;
 
 const WEBPAGE_ROOT: &str = "webpages/";
 const EXAMPLE_SERVICE_ROOT: &str = "example_service_files/";
@@ -34,7 +35,7 @@ fn setup(service_root: &str) {
     if service_folder_empty(service_root) {
         populate_service_files_folder(service_root, EXAMPLE_SERVICE_ROOT);
     }
-    
+
     files_webpage::generate_files_webpage(WEBPAGE_FILES, service_root);
 }
 
