@@ -10,7 +10,7 @@ checksum = "60c92cd5ec953d0542f48d2a90a25aa2828ab1c03217c1ca077000f3af15997d"
 
 [[package]]
 name = "file_server"
-version = "0.4.3"
+version = "0.4.4"
 dependencies = [
  "concat_const",
  "web_server",
